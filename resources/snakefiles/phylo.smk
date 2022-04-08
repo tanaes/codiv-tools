@@ -33,7 +33,7 @@ rule raxml:
         mem_mb=config['mem_mb']['raxml']
     shell:
         """
-        {raxml} \
+        {params.raxml} \
         -s {input.aln} \
         -n {output} \
         -m {params.model} \
