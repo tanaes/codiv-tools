@@ -12,7 +12,9 @@ rule raxml:
     input:
         aln = lambda wildcards: get_alignment(wildcards.clade)
     output:
-        directory("output/phylo/raxml/raxml_{clade}")
+        outdir=directory("output/phylo/raxml/raxml_{clade}"),
+        bootstraps="output/phylo/raxml/raxml_{clade}/RAxML_bootstrap.{clade}_out",
+        tree="output/phylo/raxml/raxml_{clade}/RAxML_bestTree.{clade}_out"
     params:
         raxml=config['raxml']['executable'],
         temp_dir=directory("output/{clade}_temp/"),
