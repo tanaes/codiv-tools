@@ -34,7 +34,7 @@ rule raxml:
     shell:
         """
         outdir=`readlink -f {output}`
-        mdkir -p $outdir
+        mkdir -p $outdir
         {params.raxml} \
         -s {input.aln} \
         -w $outdir \
