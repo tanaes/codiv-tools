@@ -33,9 +33,10 @@ rule raxml:
         mem_mb=config['mem_mb']['raxml']
     shell:
         """
+        outdir=`readlink -f {output}`
         {params.raxml} \
         -s {input.aln} \
-        -w {output} \
+        -w $outdir \
         -n {wildcards.clade}_out \
         -m {params.model} \
         -f {params.algorithm} \
