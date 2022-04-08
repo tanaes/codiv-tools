@@ -47,5 +47,5 @@ rule raxml:
         -N {params.bootstraps} \
         -p {params.seed} \
         -T {threads} \
-        {params.other}
+        {params.other} 2> {log} 1>&2
         """
