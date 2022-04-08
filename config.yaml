@@ -1,0 +1,16 @@
+
+# dataframe csv with clade alignment info
+clades: 'input/clades.txt'
+
+
+raxml:
+  model: GTRCAT
+  algorithm: a
+  seed: 1
+  bootstraps: autoMRE
+  other: 
+
+threads:
+  raxml: 1
+mem_mb:
+  raxml: 8000
