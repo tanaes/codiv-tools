@@ -13,4 +13,4 @@ include: "resources/snakefiles/phylo.smk"
 
 rule all:
     input:
-        expand("output/phylo/raxml/{clade}.out", clade=clades_df.index)
+        expand("output/phylo/raxml/raxml_{clade}", clade=clades_df.index)
