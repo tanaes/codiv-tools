@@ -1,5 +1,4 @@
 def get_alignment(clade):
-    print(type(clade))
     align_fp = clades_df.loc[clade, 'alignment']
     return(align_fp)
 
@@ -15,6 +14,7 @@ rule raxml:
     output:
         "output/phylo/raxml/{clade}.out"
     params:
+        raxml=config['raxml']['executable'],
         temp_dir=directory("output/{clade}_temp/"),
         model=config['raxml']['model'],
         algorithm=config['raxml']['algorithm'],
@@ -33,7 +33,7 @@ rule raxml:
         mem_mb=config['mem_mb']['raxml']
     shell:
         """
-        raxml \
+        {raxml} \
         -s {input.aln} \
         -n {output} \
         -m {params.model} \
@@ -41,5 +41,6 @@ rule raxml:
         -x {params.seed} \
         -N {params.bootstraps} \
         -p {params.seed} \
+        -T {threads} \
         {params.other}
         """

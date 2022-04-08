@@ -4,6 +4,7 @@ clades: 'input/clades.txt'
 
 
 raxml:
+  executable: raxmlHPC-PTHREADS
   model: GTRCAT
   algorithm: a
   seed: 1
@@ -11,6 +12,6 @@ raxml:
   other: 
 
 threads:
-  raxml: 1
+  raxml: 8
 mem_mb:
   raxml: 8000
