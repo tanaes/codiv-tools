@@ -30,12 +30,12 @@ rule raxml:
     benchmark:
         "output/benchmarks/phylo/raxml/{clade}-raxml.txt"
     log:
-        "output/benchmarks/phylo/raxml/{clade}-raxml.log"
+        "output/logs/phylo/raxml/{clade}-raxml.log"
     resources:
         mem_mb=config['mem_mb']['raxml']
     shell:
         """
-        outdir=`readlink -f {output}`
+        outdir=`readlink -f {output.outdir}`
         mkdir -p $outdir
         {params.raxml} \
         -s {input.aln} \
