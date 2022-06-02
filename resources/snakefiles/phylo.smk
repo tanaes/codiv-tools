@@ -1,8 +1,3 @@
-def get_alignment(clade):
-    align_fp = clades_df.loc[clade, 'alignment']
-    return(align_fp)
-
-
 rule raxml:
     """
 
@@ -10,7 +5,7 @@ rule raxml:
 
     """
     input:
-        aln = lambda wildcards: get_alignment(wildcards.clade)
+        aln = "output/align/macse/concat/{clade}.aligned.cat.fasta"
     output:
         outdir=directory("output/phylo/raxml/raxml_{clade}"),
         bootstraps="output/phylo/raxml/raxml_{clade}/RAxML_bootstrap.{clade}_out",
@@ -35,7 +30,8 @@ rule raxml:
         mem_mb=config['mem_mb']['raxml']
     shell:
         """
-        outdir=`readlink -f {output.outdir}`
+        function realpath {{ echo $(cd $(dirname $1); pwd)/$(basename $1); }}
+        outdir=`realpath {output.outdir}`
         mkdir -p $outdir
         {params.raxml} \
         -s {input.aln} \

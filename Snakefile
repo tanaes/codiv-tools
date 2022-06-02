@@ -9,7 +9,10 @@ clades_df = pd.read_csv(clades_fp, index_col=0)
 
 clades_df.index = clades_df.index.astype(str)
 
+print(clades_df)
+
 include: "resources/snakefiles/phylo.smk"
+include: "resources/snakefiles/align.smk"
 
 rule all:
     input:

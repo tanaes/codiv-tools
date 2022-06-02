@@ -2,6 +2,9 @@
 # dataframe csv with clade alignment info
 clades: 'input/clades.txt'
 
+macse:
+  fasta_ext: fasta
+  other: 
 
 raxml:
   executable: raxmlHPC-PTHREADS
@@ -13,5 +16,7 @@ raxml:
 
 threads:
   raxml: 8
+  macse: 8
 mem_mb:
   raxml: 8000
+  macse: 8000

@@ -1,0 +1,7 @@
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - macse>=1.2
+  - parallel
