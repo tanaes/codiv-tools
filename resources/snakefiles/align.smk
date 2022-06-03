@@ -139,7 +139,7 @@ rule align_seqs_macse:
          -seq {{}} \
          -gc_def {params.gc} \
          -out_NT {output.outdir}/{{/.}}.NT.fasta \
-         -out_AA {output.outdir}/{{/.}}.AA.fasta"  
+         -out_AA {output.outdir}/{{/.}}.AA.fasta" 2> {log} 1>&2
         """
 
 rule concat_align:
