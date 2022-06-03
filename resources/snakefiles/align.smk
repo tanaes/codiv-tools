@@ -46,6 +46,11 @@ def readfq(fp): # this is a generator function
                 yield name, seq, None # yield a fasta record instead
                 break
 
+def clean_seq(seq):
+    full_pattern = re.compile('[^a-zA-Z\-]')
+
+    return re.sub(full_pattern, '-', seq)
+
 def read_fasta_to_series(fp):
     fasta_dict = {}
     with open(fp, 'r') as f:
@@ -76,7 +81,7 @@ def cat_alignments(aln_df, len_series):
             seq = aln_df.loc[gene, genome]
             if pd.isna(seq):
                 seq = '-'*len_series[gene]
-            cat_seq += seq
+            cat_seq += clean_seq(seq)
         fasta_str += '>{0}\n{1}\n'.format(genome, cat_seq)
         cat_lens.append(len(cat_seq))
         
